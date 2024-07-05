@@ -3,7 +3,7 @@ const axios = require("axios");
 const path = require("path");
 
 const weatherRoute = express.Router();
-const WEATHER_SERVICE_URL = 'http://localhost:8080/weather'; // Local URL for development
+const WEATHER_SERVICE_URL = 'https://qwiklabs-gcp-01-847ca689144b.appspot.com'; // Local URL for development
 
 weatherRoute.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/index.html"));
@@ -14,7 +14,7 @@ weatherRoute.post("/", async (req, res) => {
     const unit = req.body.unit;
 
     try {
-        const response = await axios.get(WEATHER_SERVICE_URL, {
+        const response = await axios.get(`${WEATHER_SERVICE_URL}/weather`, {
             params: { city, unit }
         });
         const { temperature, weatherDes, imageURL, cityName } = response.data;
