@@ -1,0 +1,20 @@
+runtime: nodejs
+env: flex
+
+handlers:
+  - url: /
+    static_files: public/index.html
+    upload: public/index.html
+
+  - url: /public
+    static_dir: public
+
+  - url: /weather
+    script: auto
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 5
+  cool_down_period_sec: 120
+  cpu_utilization:
+    target_utilization: 0.7
